@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>My To-Do List</h1>
+
+        <div class="input-section">
+            <div class="input-row">
+                <input type="text" id="taskInput" placeholder="What needs to be done?">
+            </div>
+            <div class="input-row">
+                <input type="date" id="dueDateInput">
+                <button id="addBtn">Add Task</button>
+            </div>
+        </div>
+
+        <ul id="taskList"></ul>
+        <p class="empty-msg" id="emptyMsg">No tasks yet. Add one above!</p>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2>Edit Task</h2>
+            <input type="text" id="editTaskInput" placeholder="Task name">
+            <input type="date" id="editDueDateInput">
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancelEditBtn">Cancel</button>
+                <button id="saveEditBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

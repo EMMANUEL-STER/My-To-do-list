@@ -1,0 +1,329 @@
+:root {
+    --bg: #f0ede8;
+    --card: #ffffff;
+    --accent: #2c6e49;
+    --accent-dark: #1a4731;
+    --accent-light: #d8f3dc;
+    --danger: #c0392b;
+    --danger-dark: #96281b;
+    --edit: #e67e22;
+    --edit-dark: #b8651a;
+    --text: #1a1a2e;
+    --muted: #888;
+    --border: #e0dbd3;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 16px 80px;
+}
+
+.container {
+    background: var(--card);
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="date"] {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background: #faf9f7;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(44,110,73,0.12);
+}
+
+button {
+    padding: 12px 20px;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: var(--accent-dark);
+    box-shadow: 0 4px 12px rgba(44,110,73,0.25);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Task List */
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.empty-msg {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 24px;
+}
+
+li {
+    background: #faf9f7;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+    animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+li:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(44,110,73,0.1);
+    transform: translateY(-1px);
+}
+
+/* Checkbox */
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background: white;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+}
+
+.task-checkbox:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.task-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-checkbox:hover:not(:checked) {
+    background: var(--accent-light);
+}
+
+/* Task info */
+.task-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 3px;
+    min-width: 0;
+}
+
+.task-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.due-date {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.due-date.overdue {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+li.completed .task-text {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+li.completed {
+    opacity: 0.7;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.edit-btn {
+    background: var(--edit);
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+.edit-btn:hover {
+    background: var(--edit-dark);
+    box-shadow: 0 4px 12px rgba(230,126,34,0.25);
+}
+
+.delete-btn {
+    background: var(--danger);
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background: var(--danger-dark);
+    box-shadow: 0 4px 12px rgba(192,57,43,0.25);
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 16px;
+    backdrop-filter: blur(2px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    padding: 28px 24px;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    animation: popIn 0.2s ease;
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.cancel-btn {
+    background: #ccc;
+    color: var(--text);
+}
+
+.cancel-btn:hover {
+    background: #aaa;
+    box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 24px 18px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .edit-btn, .delete-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
